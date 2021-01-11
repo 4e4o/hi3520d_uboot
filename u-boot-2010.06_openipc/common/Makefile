@@ -363,7 +363,7 @@ $(obj)../tools/envcrc:
 	$(MAKE) -C ../tools
 
 $(obj)crc32.c:
-	ln -s $(src)$(SRCTREE)/lib/crc32.c $(obj)crc32.c
+	ln -s $(SRCTREE)/lib/crc32.c $(obj)crc32.c
 
 #########################################################################
 
