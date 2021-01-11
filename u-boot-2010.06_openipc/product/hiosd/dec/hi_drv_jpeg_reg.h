@@ -155,7 +155,10 @@
 	HI_VOID  JPGDRV_WRITE_REG(HI_U32 base, HI_U32 offset, HI_U32 value);
 
 
+#ifndef _SIZE_T
+#define _SIZE_T
 	typedef unsigned int size_t;
+#endif
 	
 	#define DCTSIZE2	    64	/* DCTSIZE squared; # of elements in a block */
 
