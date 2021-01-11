@@ -1,6 +1,6 @@
 include $(TOPDIR)/config.mk
 
-LIB := libvo.a
+LIB := $(obj)libvo.a
 
 COBJS-y += vou.o
 COBJS-y += vou_drv.o

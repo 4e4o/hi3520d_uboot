@@ -1,6 +1,6 @@
 include $(TOPDIR)/config.mk
 
-LIB := libjpegd.a
+LIB := $(obj)libjpegd.a
 
 COBJS-y += jpegd.o
 COBJS-y += hi_JpegDecode.o

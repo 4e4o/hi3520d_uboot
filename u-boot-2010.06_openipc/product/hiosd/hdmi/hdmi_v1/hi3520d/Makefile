@@ -1,6 +1,6 @@
 include $(TOPDIR)/config.mk
 
-LIB := libhdmi.a
+LIB := $(obj)libhdmi.a
 
 COBJS-y += hdmi.o
 COBJS-y += de.o
