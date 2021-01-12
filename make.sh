@@ -7,7 +7,7 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-WORK_DIR="/home/computer/workspace/my_openipc/uboot_hi3520d"
+WORK_DIR="/home/computer/workspace/my_openipc/hi3520d_uboot"
 
 OPENIPC_DIR="${WORK_DIR}/../chaos_calmer"
 LOADER_SRC_DIR="${WORK_DIR}/u-boot-2010.06_openipc"
