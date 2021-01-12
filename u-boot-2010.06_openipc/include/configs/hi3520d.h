@@ -104,11 +104,12 @@
 #include "../../product/env_setup.h"
 /* env in flash instead of CFG_ENV_IS_NOWHERE */
 #define CONFIG_ENV_IS_IN_SPI_FLASH     1
-#define CONFIG_ENV_OFFSET          0x80000      /* environment starts here */
+#define CONFIG_ENV_OFFSET          0x40000      /* environment starts here */
 #define CONFIG_ENV_SPI_ADDR        (CONFIG_ENV_OFFSET)
 #define CONFIG_CMD_SAVEENV
+#define CONFIG_CMD_RUN
 
-#define CONFIG_ENV_SIZE            0x40000    /*include ENV_HEADER_SIZE */
+#define CONFIG_ENV_SIZE            0x10000    /*include ENV_HEADER_SIZE */
 #define CONFIG_ENV_SECT_SIZE CONFIG_ENV_SIZE
 #define CONFIG_NR_DRAM_BANKS       1          /* we have 1 bank of DRAM */
 /* kernel parameter list phy addr */
@@ -117,14 +118,19 @@
 /*-----------------------------------------------------------------------
  *  Environment   Configuration
  ------------------------------------------------------------------------*/
+#define CONFIG_BOOTCOMMAND	"setenv setargs setenv bootargs ${bootargs}; run setargs; sf probe 0; sf read 0x82000000 0x50000 0x200000; bootm 0x82000000"
 #define CONFIG_BOOTDELAY	1
-#define CONFIG_BOOTARGS "mem=96M console=ttyAMA0,115200"
-#define CONFIG_NETMASK  255.255.254.0       /* talk on MY local net */
-#define CONFIG_IPADDR   192.168.1.10        /* static IP I currently own */
-#define CONFIG_SERVERIP 192.168.1.2     /* current IP of tftp server ip */
-#define CONFIG_ETHADDR  00:00:23:34:45:66
-#define CONFIG_BOOTFILE "uImage"        /* file to load */
-#define CONFIG_BAUDRATE         115200
+#define CONFIG_BOOTARGS		"totalmem=$(totalmem) mem=$(osmem) ethaddr=$(ethaddr) phyaddru=$(phyaddru) phyaddrd=$(phyaddrd) sensor=$(sensor) linux_cmd=$(linux_cmd) totalmem=128M console=ttyAMA0,115200 panic=20 root=/dev/mtdblock3 rootfstype=squashfs mtdparts=hi_sfc:256k(boot),64k(env),2048k(kernel),5120k(rootfs),-(rootfs_data)"
+#define CONFIG_NETMASK		255.255.254.0       /* talk on MY local net */
+#define CONFIG_IPADDR		192.168.1.10        /* static IP I currently own */
+#define CONFIG_SERVERIP		192.168.1.254     /* current IP of tftp server ip */
+#define CONFIG_ETHADDR		00:00:23:34:45:66
+#define CONFIG_BOOTFILE		"uImage"        /* file to load */
+#define CONFIG_BAUDRATE		115200
+#define CONFIG_OSMEM		128M
+#define CONFIG_SENSOR		none
+#define CONFIG_LINUX_CMD	version
+
 /*-----------------------------------------------------------------------
  * for bootm linux
 *  used in file  board/hi3520d/board.c
@@ -198,7 +204,7 @@
  ------------------------------------------------------------------------*/
 
 #define CONFIG_VERSION_VARIABLE  1 /*used in common/main.c*/
-#define CONFIG_SYS_PROMPT  "hisilicon # "	/* Monitor Command Prompt */
+#define CONFIG_SYS_PROMPT  "OpenIPC # "	/* Monitor Command Prompt */
 #define CONFIG_SYS_CBSIZE  1024            /* Console I/O Buffer Size  */
 #define CONFIG_SYS_PBSIZE  (CONFIG_SYS_CBSIZE+sizeof(CONFIG_SYS_PROMPT)+16)
 
@@ -251,7 +257,7 @@
 /*-----------------------------------------------------------------------
  * usb storage system update
  * ----------------------------------------------------------------------*/
- /* #define CONFIG_AUTO_UPDATE			1 */
+#define CONFIG_AUTO_UPDATE			1
 #ifdef CONFIG_AUTO_UPDATE
 	#define CONFIG_AUTO_USB_UPDATE		1
 #endif
@@ -294,5 +300,6 @@
 #define ENABLE_HI3515A_BLANK
 #define REG_INFO_BLANK_SIZE 2400
 
-#define CONFIG_OSD_ENABLE
+/*#define CONFIG_OSD_ENABLE*/
+
 #endif	/* __CONFIG_H */
