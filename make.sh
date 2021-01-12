@@ -45,9 +45,12 @@ make_run() {
     STAGING_DIR="${STAGINDIR}" PATH=$PATH:${TOOLCHAIN} make O="${BUILD_DIR}" -C "${LOADER_SRC_DIR}" ARCH=arm CROSS_COMPILE=${CROSSRULE} $@
 }
 
+#${TOOLCHAIN}/${CROSSRULE}gcc -v
+#exit 0
+
 make_run distclean
 make_run hi3520d_config
-make_run PLATFORM_REFLAGS="-std=gnu90" -j$((`nproc`+1))   #>.build_uboot.log 2>&1
+make_run -j$((`nproc`+1))   #>.build_uboot.log 2>&1
 
 dd if=./u-boot.bin of=./fb1 bs=1 count=64
 dd if=${REGISTERS_FILE} of=./fb2 bs=4800 conv=sync
