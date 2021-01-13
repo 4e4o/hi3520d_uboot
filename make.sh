@@ -10,7 +10,7 @@ fi
 WORK_DIR="/home/computer/workspace/my_openipc/hi3520d_uboot"
 
 OPENIPC_DIR="${WORK_DIR}/../chaos_calmer"
-LOADER_SRC_DIR="${WORK_DIR}/u-boot-2010.06_openipc"
+LOADER_SRC_DIR="${OPENIPC_DIR}/build_dir/target-arm_cortex-a9_uClibc-0.9.33.2_eabi/linux-hi35xx_20dv200/u-boot-20dv200/u-boot-2010.06_openipc"
 REGISTERS_FILE="${OPENIPC_DIR}/package/boot/uboot-hi35xx/files/uboot_tools/reg_info_hi3520d_duo.bin"
 
 if [ $1 = "h" ] ; then
